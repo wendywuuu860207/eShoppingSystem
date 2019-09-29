@@ -1,0 +1,6 @@
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\bin\Debug\DB.dll
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\bin\Debug\DB.pdb
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\obj\Debug\DB.dll
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\obj\Debug\DB.pdb
+D:\元智\1072\軟體工程\作業\OOT\DB\DB\obj\Debug\DB.csprojAssemblyReference.cache
