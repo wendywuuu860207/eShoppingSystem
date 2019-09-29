@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "會員登入";
+}
+
+<h2>會員登入</h2>
+<form action="@Url.Action("ValidLoginProcess")" method="post">
+    <style>
+        #LoginForm {
+            width: 400px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #LoginForm td {
+            padding: 10px;
+        }
+        #LoginForm td[class=Header] {
+            width: 120px;
+            font-weight: bold;
+            text-align: right;
+        }
+        #LoginBtn {
+            width: 120px;
+            height: 30px;
+        }
+    </style>
+    <table id="LoginForm">
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <span style="color:red;font-weight:bold;">@ViewData["msg"]</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="Header">手機號碼：</td>
+            <td><input id="Phone" name="Phone" type="text" /></td>
+        </tr>
+        <tr>
+            <td class="Header">密碼：</td>
+            <td><input id="PW" name="PW" type="password" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <input id="LoginBtn" type="submit" value="登入" />
+            </td>
+        </tr>
+    </table>
+</form>
+<p>
+    <a href="/Login/ForgetPassword" style="padding: 20px 0px 20px 40px;">忘記密碼</a>
+    <a href="/Login/NewMemberInfo" style="padding: 20px 0px 20px 40px;">加入會員</a>
+    <a href="/Login/AdminIndex" style="padding: 20px 0px 20px 40px;">管理員登入</a>
+</p>
+

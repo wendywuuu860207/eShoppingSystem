@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "首頁";
+}
+
+@model List<ShopSystem.Models.ProductInfo>
+
+@section Style
+{
+    <style>
+        #ProductList {
+            border-top: 3px #ffa900 solid;
+            border-bottom: 3px #0094ff solid;
+        }
+        #ProductList td {
+            text-align: center;
+        }
+    </style>
+}
+
+<h2>歡迎光臨! 您是第&nbsp;@Html.Raw(ViewData["VisitNum"])&nbsp;位光臨本站的訪客!</h2>
+
+<table align="center">
+    <tr>
+        <td class="ChooseL">
+            @Html.Raw(ViewData["proTypes"])
+        </td>
+        <td class="ChooseR">
+            <table id="ProductList" cellpadding="10">
+                <tr>
+                    @{
+                        int i = 0;
+                        foreach (var pp in Model)
+                        {
+                            <td>
+                                <a style="text-align:center" href="/Home/Product?pid=@pp.ID">
+                                    <img src="~/images/shop/@pp.PTName/@pp.Pic" />
+                                    <br /> @pp.Name
+                                </a>
+                            </td>
+                            i++;
+                            if (i % 4 == 0)
+                            {
+                            @:</tr><tr>
+                            }
+                        }
+                    }
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+

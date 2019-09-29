@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "商品搜尋列表";
+}
+@model List<ShopSystem.Models.ProductInfo>
+
+@section Style
+{
+    <style>
+        #ProductList tr:nth-child(odd) {
+            background-color: rgba(255, 223, 161, 0.25);
+        }
+        #ProductList tr:nth-child(even) {
+            background-color: rgba(161, 215, 255, 0.25);
+        }
+    </style>
+}
+
+<h2>商品搜尋列表</h2>
+<p>&nbsp;</p>
+<table align="center">
+    <tr>
+        <td class="ChooseL">
+            @Html.Raw(ViewData["proTypes"])
+        </td>
+        <td class="ChooseR">
+            <table id="ProductList" cellpadding="30" cellspacing="0">
+                @if (Model.Count == 0)
+                {
+                    @:查無相關商品!
+                }
+                @foreach (var pp in Model)
+                {
+                    <tr>
+                        <td align="center">
+                            <a href="/Home/Product?pid=@pp.ID">
+                                <img src="~/images/shop/@pp.PTName/@pp.Pic" />
+                            </a>
+                        </td>
+                        <td width="500">
+                            <a href="/Home/Product?pid=@pp.ID">
+                                <p>@pp.Name</p>
+                            </a>
+                            <p>
+                                價格：@pp.Price&nbsp;&nbsp;&nbsp;&nbsp;庫存：@pp.Stock
+                            </p>
+                        </td>
+                        <td width="100">
+                            @if (pp.Stock > 0)
+                            {
+                                <a href="@Url.Action("AddToCart", "ShopCart", new { pid = pp.ID })">
+                                    <img src="~/images/shop/cart_add.png" title="加入購物車" />
+                                </a>
+                            }
+                            else
+                            {
+                                <img src="~/images/shop/sold_out.png" title="已售完" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+<p>&nbsp;</p>
+<p style="text-align:center">@Html.Raw(ViewData["PageLink"])</p>

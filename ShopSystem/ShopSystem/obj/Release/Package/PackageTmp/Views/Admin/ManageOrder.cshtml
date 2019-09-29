@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "管理訂單";
+}
+
+@section Style
+{
+    <style>
+        #ManageOrder th {
+            background-color: rgba(161, 255, 173, 0.25);
+        }
+
+        #ManageOrder tr:nth-child(odd) {
+            background-color: rgba(255, 223, 161, 0.25);
+        }
+
+        #ManageOrder tr:nth-child(even) {
+            background-color: rgba(161, 215, 255, 0.25);
+        }
+        #FormTable {
+            width: 600px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #FormTable td {
+                padding: 10px;
+            }
+
+        .TitleLabel {
+            font-weight: bold;
+            font-size: 14pt;
+            width: 200px;
+            text-align: right;
+        }
+    </style>
+}
+
+<h2>管理訂單</h2>
+<table id="ManageOrder" align="center" cellpadding="10">
+    <tr>
+        <th width="80px">訂單編號</th>
+        <th width="80px">客戶編號</th>
+        <th width="100px">收件者姓名</th>
+        <th width="120px">收件者電話</th>
+        <th width="200px">收件者地址</th>
+        <th width="100px">送貨方式</th>
+        <th width="70px">運費</th>
+        <th width="100px">訂單狀態</th>
+        <th width="200px">備註</th>
+        <th width="180px">訂單時間</th>
+    </tr>
+    @Html.Raw(ViewData["orderList"])
+</table>
+<p>&nbsp;</p>
+<hr />
+<table align="center">
+    <tr>
+        <td>
+            <form id="OrderForm" action="@Url.Action("ChageOrderState")" method="post">
+                <table id="FormTable">
+                    <tr>
+                        <td align="center" colspan="2">
+                            <h2>修改訂單狀態</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            訂單編號：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="orderID" name="orderID" type="text" required="required" maxlength="5" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            訂單狀態：
+                        </td>
+                        <td>
+                            <select id="orderState" name="orderState">
+                                <option value="0">訂單已取消</option>
+                                <option value="1">訂單成立</option>
+                                <option value="2">送貨中</option>
+                                <option value="3">已取貨</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2">
+                            <input id="Submit" type="submit" value="修改" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>

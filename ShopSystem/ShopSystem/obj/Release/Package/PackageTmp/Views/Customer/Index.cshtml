@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "個人中心";
+}
+
+@section Style
+{
+    <style>
+        th {
+            background-color: rgba(161, 255, 173, 0.25);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgba(255, 223, 161, 0.25);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(161, 215, 255, 0.25);
+        }
+    </style>
+}
+
+<h2>個人中心</h2>
+<p style="text-align:right">
+    <a id="ChangePW" href="/Customer/ChangePW">修改密碼</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="Service" href="/Customer/ContectService">聯絡客服人員</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<table align="center" cellpadding="10">
+    <tr>
+        <th width="80px">訂單編號</th>
+        <th width="100px">收件者姓名</th>
+        <th width="120px">收件者電話</th>
+        <th width="200px">收件者地址</th>
+        <th width="100px">送貨方式</th>
+        <th width="70px">運費</th>
+        <th width="100px">訂單狀態</th>
+        <th width="200px">備註</th>
+        <th width="180px">訂單時間</th>
+    </tr>
+    @Html.Raw(ViewData["orderList"])
+</table>

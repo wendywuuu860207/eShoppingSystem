@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "管理商品";
+}
+
+@section Style
+{
+    <style>
+        th {
+            background-color: rgba(161, 255, 173, 0.25);
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgba(255, 223, 161, 0.25);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(161, 215, 255, 0.25);
+        }
+    </style>
+}
+<h2>管理商品</h2>
+<p style="text-align:right"><a id="NewProduct" href="/Admin/NewProduct">新增商品&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+<p style="text-align:center">類別編號：1→PDX、2→PDY、3→PDZ&nbsp;&nbsp;&nbsp;&nbsp;商品狀態：0→停止販售、1→販售中</p>
+<table id="ManageOrder" align="center" cellpadding="10">
+    <tr>
+        <th width="80px">商品編號</th>
+        <th width="100px">商品名稱</th>
+        <th width="80px">類別編號</th>
+        <th width="80px">價格</th>
+        <th width="80px">庫存量</th>
+        <th width="80px">商品狀態</th>
+        <th width="100px">商品圖片檔名</th>
+        <th width="200px">商品介紹</th>
+    </tr>
+    @Html.Raw(ViewData["products"])
+</table>

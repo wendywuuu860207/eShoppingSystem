@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "訂單明細";
+}
+
+@section Style
+{
+    <style>
+        th {
+            background-color: rgba(161, 255, 173, 0.25);
+        }
+        tr:nth-child(odd) {
+            background-color: rgba(255, 223, 161, 0.25);
+        }
+        tr:nth-child(even) {
+            background-color: rgba(161, 215, 255, 0.25);
+        }
+    </style>
+}
+
+<h2>訂單明細</h2>
+<p style="text-align:center">訂單編號：@ViewData["orderID"]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品總金額：@ViewData["totalPrice"]</p>
+<table align="center" cellpadding="10">
+    <tr>
+        <th width="200px">商品名稱</th>
+        <th width="100px">價格</th>
+        <th width="100px">數量</th>
+    </tr>
+    @Html.Raw(ViewData["orderDetailList"])
+</table>

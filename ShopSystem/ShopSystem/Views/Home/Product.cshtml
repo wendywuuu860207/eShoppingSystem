@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "商品資訊";
+}
+@model ShopSystem.Models.ProductInfo
+<h2>商品資訊</h2>
+<p>&nbsp;</p>
+<table align="center">
+    <tr>
+        <td class="ChooseL">
+            @Html.Raw(ViewData["proTypes"])
+        </td>
+        <td class="ChooseR">
+            <p>@Model.Name</p>
+            <p><img src="~/images/shop/@Model.PTName/@Model.Pic" /></p>
+            <p>商品介紹：</p>
+            @Html.Raw(Model.Note)
+            <p>
+                價格：&nbsp;@Model.Price&nbsp;&nbsp;&nbsp;&nbsp;庫存：&nbsp;@Model.Stock&nbsp;&nbsp;&nbsp;&nbsp;
+                @if (Model.Stock > 0)
+                {
+                    <a href="@Url.Action("AddToCart", "ShopCart", new { pid = Model.ID })">
+                        <img src="~/images/shop/cart_add.png" title="加入購物車" />
+                    </a>
+                }
+                else
+                {
+                    <img src="~/images/shop/sold_out.png" title="已售完" />
+                }
+            </p>
+        </td>
+    </tr>
+</table>
+

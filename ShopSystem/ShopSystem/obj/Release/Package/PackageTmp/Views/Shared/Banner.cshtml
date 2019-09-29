@@ -1,0 +1,43 @@
+﻿<style>
+    #Banner {
+        background-color: skyblue;
+        height: 80px;
+    }
+    #Home {
+        padding: 20px 50px 20px 20px;
+        float: left;
+        font-size: 28px;
+        line-height: 40px;
+    }
+    #form1 {
+        float: left;
+    }
+    #form1 p {
+        font-size: 15px;
+        color: black;
+        line-height: 48px;
+        text-decoration: none;
+    }
+    #Login, #Logout, #CustomerCenter, #AdminCenter {
+        padding: 20px 40px 20px 0px;
+        float: right;
+        font-size: 15px;
+        line-height: 40px;
+    }
+    .visible {
+        display: block;
+    }
+    .invisible {
+        display: none;
+    }
+</style>
+<div id="Banner">
+    <a id="Home" href="/Home/Index">線上購物系統 Online Shopping System</a>
+    <form id="form1" action="@Url.Action("SentSearch", "Home" )" method="post">
+        <p><input id="Search" name="Search" type="text" maxlength="50" />&nbsp;<input id="Search_btn" type="submit" value="搜尋" /></p>
+    </form>
+    <a id="Login" class="visible" href="/Login/Index">登入</a>
+    <a id="Logout" class="invisible" href="/Login/Logout">登出</a>
+    <a id="CustomerCenter" class="invisible" href="/Customer/Index">個人中心</a>
+    <a id="AdminCenter" class="invisible" href="/Admin/Index">管理中心</a>
+</div>

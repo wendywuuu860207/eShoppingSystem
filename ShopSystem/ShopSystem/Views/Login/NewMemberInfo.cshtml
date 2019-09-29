@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "加入會員";
+}
+
+@section Style
+{
+    <style>
+        #FormTable {
+            width: 600px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #FormTable td {
+                padding: 10px;
+            }
+
+        .TitleLabel {
+            font-weight: bold;
+            font-size: 14pt;
+            width: 200px;
+            text-align: right;
+        }
+    </style>
+}
+
+@section Script
+{
+    <script>
+        $(document).ready(function () {
+
+            //檢查帳號是否重複
+            $("#Phone").blur(CheckAccount);
+
+        });
+
+        //檢查帳號是否重複
+        function CheckAccount() {
+            var vv = $("#Phone").val();
+            if (vv.length == 0) return;
+
+            var pp = $.param({ "phone": vv });
+            $.get("@Url.Action("CheckPhone")", pp, function (xx) {
+                if (xx == "f") {
+                    $("#CheckPhone").text("手機號碼可以使用");
+                    $("#CheckPhone").css("color", "blue");
+                    return true;
+                }
+                else {
+                    if (xx == "t")
+                        $("#CheckPhone").text("手機號碼已被使用");
+                    else
+                        $("#CheckPhone").text("手機號碼格式錯誤");
+                    $("#CheckPhone").css("color", "red");
+                }
+            }, "text");
+            return false;
+        }
+
+        //檢驗密碼
+        function CheckSubmitForm() {
+
+            var msg = "";
+
+            if ($("#CheckPhone").text() != "手機號碼可以使用")
+                msg = "* 手機號碼有誤！\n";
+
+            if ($("#PW").val() != $("#ConfirmPW").val())
+                msg += "* 兩次輸入的密碼需相符！\n";
+
+            if (msg.length > 0) {
+                alert(msg);
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+}
+<h2>請填寫會員資料</h2>
+<table align="center">
+    <tr>
+        <td>
+            <form id="form1" action="@Url.Action("AddNewMember")" method="post" onsubmit="return CheckSubmitForm()">
+                <table id="FormTable">
+                    <tr>
+                        <td class="TitleLabel">
+                            手機號碼：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Phone" name="Phone" type="text" required="required" maxlength="10" />&nbsp;&nbsp;
+                            <span id="CheckPhone"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            密碼：
+                        </td>
+                        <td><input id="PW" name="PW" type="password" required="required" maxlength="20" /><span id="Span2"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            確認密碼：
+                        </td>
+                        <td><input id="ConfirmPW" type="password" required="required" maxlength="20" /><span id="Span3"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            姓名：
+                        </td>
+                        <td><input id="Name" name="Name" type="text" required="required" maxlength="5" /></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            電子郵件：
+                        </td>
+                        <td><input id="Email" name="Email" style="width: 300px" type="text" required="required" maxlength="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<input id="Submit2" type="submit" value="加入會員" />
+                            <input id="Reset2" type="reset" value="重填" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>

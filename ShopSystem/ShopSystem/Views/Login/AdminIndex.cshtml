@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "管理員登入";
+}
+
+<h2>管理員登入</h2>
+<form action="@Url.Action("AdminValidLoginProcess")" method="post">
+    <style>
+        #LoginForm {
+            width: 400px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #LoginForm td {
+                padding: 10px;
+            }
+
+                #LoginForm td[class=Header] {
+                    width: 120px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+        #LoginBtn {
+            width: 120px;
+            height: 30px;
+        }
+    </style>
+    <table id="LoginForm">
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <span style="color:red;font-weight:bold;">@ViewData["msg"]</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="Header">帳號：</td>
+            <td><input id="Phone" name="Phone" type="text" /></td>
+        </tr>
+        <tr>
+            <td class="Header">密碼：</td>
+            <td><input id="PW" name="PW" type="password" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <input id="LoginBtn" type="submit" value="登入" />
+            </td>
+        </tr>
+    </table>
+</form>
+

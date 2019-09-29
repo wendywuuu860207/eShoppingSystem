@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "修改密碼";
+}
+
+@section Script
+{
+    <script>
+
+        //檢驗密碼
+        function CheckSubmitForm() {
+
+            var msg = "";
+
+            if ($("#PW").val() != $("#ConfirmPW").val())
+                msg = "* 兩次輸入的密碼需相符！\n";
+
+            if ($("#PW").val() == null)
+                msg = "* 請輸入密碼！\n";
+
+            if (msg.length > 0) {
+                alert(msg);
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+}
+
+<h2>修改密碼</h2>
+<table align="center">
+    <tr>
+        <td>
+            <form id="form1" action="@Url.Action("UpdatePW")" method="post" onsubmit="return CheckSubmitForm()">
+                <style>
+                    #ChangePWForm {
+                        width: 400px;
+                        border-collapse: collapse;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                        #ChangePWForm td {
+                            padding: 10px;
+                        }
+
+                            #ChangePWForm td[class=Header] {
+                                width: 120px;
+                                font-weight: bold;
+                                text-align: right;
+                            }
+                </style>
+                <table id="ChangePWForm">
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <span style="color:red;font-weight:bold;">@ViewData["msg"]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Header">
+                            舊密碼：
+                        </td>
+                        <td>
+                            <input id="oldPW" name="oldPW" type="password" required="required" maxlength="20" />
+                            <span id="CheckPW"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Header">
+                            新密碼：
+                        </td>
+                        <td><input id="PW" name="PW" type="password" required="required" maxlength="20" /></td>
+                    </tr>
+                    <tr>
+                        <td class="Header">
+                            確認密碼：
+                        </td>
+                        <td><input id="ConfirmPW" type="password" required="required" maxlength="20" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input id="Submit2" type="submit" value="修改密碼" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>
+

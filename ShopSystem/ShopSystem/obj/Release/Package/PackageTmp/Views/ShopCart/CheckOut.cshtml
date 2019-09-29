@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "確認訂單";
+}
+
+@section Style
+{
+    <style>
+        #FormTable {
+            width: 600px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #FormTable td {
+                padding: 10px;
+            }
+
+        .TitleLabel {
+            font-weight: bold;
+            font-size: 14pt;
+            width: 200px;
+            text-align: right;
+        }
+    </style>
+}
+
+<h2>確認訂單</h2>
+<table align="center">
+    <tr>
+        <td>
+            <form id="OrderForm" action="@Url.Action("PlaceOrder")" method="post">
+                <table id="FormTable">
+                    <tr>
+                        <td class="TitleLabel">
+                            收件者姓名：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="rcptName" name="rcptName" type="text" required="required" maxlength="5" />&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            收件者電話號碼：
+                        </td>
+                        <td style="width:300px;"><input id="rcptPhone" name="rcptPhone" type="text" required="required" maxlength="10" /></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            收件者地址：
+                        </td>
+                        <td><input id="rcptAddr" name="rcptAddr" style="width: 300px" type="text" required="required" maxlength="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            送貨方式：
+                        </td>
+                        <td>
+                            <select id="DTID" name="DTID">
+                                <option value="1">7-11</option>
+                                <option value="2">全家</option>
+                                <option value="3">黑貓宅急便</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            備註：
+                        </td>
+                        <td><input id="orderNote" name="orderNote" style="width: 300px" type="text" maxlength="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <input id="Submit" type="submit" value="完成訂單" />
+                            <input id="Reset" type="reset" value="重填" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>

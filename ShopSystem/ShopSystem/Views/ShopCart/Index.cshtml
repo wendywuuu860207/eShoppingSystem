@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "購物車";
+}
+
+@section Style
+{
+    <style>
+        #CartList {
+            width: 600px;
+            border-collapse: collapse;
+            border: 1px solid gray;
+        }
+
+        #CartList td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #CartList thead td {
+            background-color: #d4740d;
+            font-weight: bold;
+            color: white;
+        }
+
+        .InfoList {
+            width: 600px;
+            border-collapse: collapse;
+        }
+
+        .InfoList td {
+            padding: 10px;
+            width: 25%;
+        }
+
+        .Header {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .Btns {
+            width: 120px;
+            height: 40px;
+        }
+    </style>
+}
+
+@section Script
+{
+    <script>
+        $(document).ready(function () {
+            $("#ContinueBuyBtn").click(function () {
+                history.back();
+            });
+
+            $("#ClearCartBtn").click(function () {
+                if (confirm("是否確定清空購物車？"))
+                    document.location = "@Url.Action("ClearCart")";
+            });
+
+            $("#UpdateCartBtn").click(function () {
+                if (confirm("是否確定更新購物車？")) {
+                    $("#Form1").submit();
+                }
+                else {
+                    location.reload();
+                }
+            });
+
+            $("#CheckOutBtn").click(function () {
+                if (confirm("是否前往確認訂單頁面？")) {
+                    document.location = "@Url.Action("CheckOut")";
+                }
+                else {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+}
+
+<h2>購物車</h2>
+<table align="center">
+    <tr>
+        <td>
+            <form id="Form1" action="@Url.Action("UpdateCart")" method="post">
+                <table id="CartList">
+                    <thead>
+                        <tr>
+                            <td>產品編號</td>
+                            <td>產品名</td>
+                            <td>單價</td>
+                            <td>數量</td>
+                            <td>金額</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Session["Cart"] as HashSet<ShopSystem.Models.CartItem>)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Price</td>
+                                <td>
+                                    <select name="pc_@item.ID" style="width:40px;">
+                                        @for (int i = 0; i <= (item.Stock > 10 ? 10 : item.Stock); i++)
+                                        {
+                                            if (i == item.Quantity)
+                                            {
+                                                <option value="@i" selected="selected">@i</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                                <td>@item.SubTotal</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>&nbsp;</p>
+                <table class="InfoList">
+                    <tr>
+                        <td class="Header">運費：</td>
+                        <td>@ViewData["Shipping"]</td>
+                        <td class="Header">小計：</td>
+                        <td>@ViewData["Amount"]</td>
+                    </tr>
+                    <tr>
+                        <td class="Header">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="Header">總金額：</td>
+                        <td>@ViewData["Total"]</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="Header" style="color:red">
+                            <p>更改商品數量後，</p>
+                            <p>請記得點選更新購物車!</p>
+                        </td>
+                    </tr>
+                </table>
+                <table class="InfoList">
+                    <tr>
+                        <td><input class="Btns" id="ContinueBuyBtn" type="button" value="繼續購物" /></td>
+                        <td><input class="Btns" id="UpdateCartBtn" type="button" value="更新購物車" /></td>
+                        <td><input class="Btns" id="ClearCartBtn" type="button" value="清空購物車" /></td>
+                        <td><input class="Btns" id="CheckOutBtn" type="button" value="購物車結帳" /></td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>

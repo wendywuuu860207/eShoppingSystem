@@ -1,0 +1,79 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>線上購物系統 - @ViewBag.Title</title>
+    <style>
+        body, #MainDiv {
+            width: 100%;
+            margin: 0px;
+        }
+        #Body {
+            margin: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover, a:focus {
+            color: blue;
+            background-color: transparent;
+        }
+        .ChooseL {
+            width: 240px;
+            vertical-align:top;
+        }
+        .ChooseR {
+            width: 880px;
+            vertical-align: top;
+        }
+    </style>
+    @RenderSection("Style", false)
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $.get("@Url.Action("CheckValidLogin", "Login")", null, function (v1) {
+            var Login = document.getElementById("Login");
+            var Logout = document.getElementById("Logout");
+            if (v1 == "t") {
+                Login.className = "invisible";
+                Logout.className = "visible";
+                $.get("@Url.Action("CheckLoginType", "Login")", null, function (v2) {
+                    var CustomerCenter = document.getElementById("CustomerCenter");
+                    var AdminCenter = document.getElementById("AdminCenter");
+                    if (v2 == "a") {
+                        CustomerCenter.className = "invisible";
+                        AdminCenter.className = "visible";
+                    }
+                    else if(v2 == "c") {
+                        CustomerCenter.className = "visible";
+                        AdminCenter.className = "invisible";
+                    }
+                    else {
+                        CustomerCenter.className = "invisible";
+                        AdminCenter.className = "invisible";
+                    }
+                }, "text");
+            }
+            else {
+                Login.className = "visible";
+                Logout.className = "invisible";
+            }
+        }, "text");
+    </script>
+    @RenderSection("Script", false)
+</head>
+<body>
+    <div id="MainDiv">
+        @Html.Partial("Banner")
+        <div id="Body">
+            @RenderBody()
+        </div>
+        @Html.Partial("Footer")
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "新增商品";
+}
+@section Style
+{
+    <style>
+        #FormTable {
+            width: 600px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #FormTable td {
+                padding: 10px;
+            }
+
+        .TitleLabel {
+            font-weight: bold;
+            font-size: 14pt;
+            width: 200px;
+            text-align: right;
+        }
+    </style>
+}
+
+<h2>新增商品</h2>
+<p style="text-align:center">類別編號：1→PDX、2→PDY、3→PDZ&nbsp;&nbsp;&nbsp;&nbsp;商品狀態：0→停止販售、1→販售中</p>
+<table align="center">
+    <tr>
+        <td>
+            <form id="OrderForm" action="@Url.Action("AddProduct")" method="post">
+                <table id="FormTable">
+                    <tr>
+                        <td class="TitleLabel">
+                            商品名稱：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Name" name="Name" type="text" required="required" maxlength="25" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            類別編號：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="PTID" name="PTID" type="text" required="required" maxlength="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            價格：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Price" name="Price" type="text" required="required" maxlength="5" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            庫存量：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Stock" name="Stock" type="text" required="required" maxlength="5" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品狀態：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="State" name="State" type="text" required="required" maxlength="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品圖片檔名：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Pic" name="Pic" type="text" required="required" maxlength="20" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品介紹：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Note" name="Note" type="text" required="required" width="1000" height="200" maxlength="350" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <input id="Submit" type="submit" value="新增" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>

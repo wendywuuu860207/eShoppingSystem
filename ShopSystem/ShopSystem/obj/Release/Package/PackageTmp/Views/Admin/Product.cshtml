@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "更新商品";
+}
+@model ShopSystem.Models.ProductInfo
+@section Style
+{
+    <style>
+        #FormTable {
+            width: 600px;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #FormTable td {
+                padding: 10px;
+            }
+
+        .TitleLabel {
+            font-weight: bold;
+            font-size: 14pt;
+            width: 200px;
+            text-align: right;
+        }
+    </style>
+}
+
+<h2>更新商品</h2>
+<p style="text-align:center">類別編號：1→PDX、2→PDY、3→PDZ&nbsp;&nbsp;&nbsp;&nbsp;商品狀態：0→停止販售、1→販售中</p>
+<table align="center">
+    <tr>
+        <td>
+            <form id="OrderForm" action="@Url.Action("UpdateProduct")" method="post">
+                <table id="FormTable">
+                    <tr>
+                        <td class="TitleLabel">
+                            商品編號：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="ID" name="ID" type="text" required="required" maxlength="5" value="@Model.ID" readonly="readonly" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品名稱：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Name" name="Name" type="text" required="required" maxlength="25" value="@Model.Name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            類別編號：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="PTID" name="PTID" type="text" required="required" maxlength="1" value="@Model.PTID" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            價格：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Price" name="Price" type="text" required="required" maxlength="5" value="@Model.Price" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            庫存量：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Stock" name="Stock" type="text" required="required" maxlength="5" value="@Model.Stock" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品狀態：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="State" name="State" type="text" required="required" maxlength="1" value="@Model.State" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品圖片檔名：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Pic" name="Pic" type="text" required="required" maxlength="20" value="@Model.Pic" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            商品介紹：
+                        </td>
+                        <td style="width:300px;">
+                            <input id="Note" name="Note" type="text" required="required" width="400" height="50" maxlength="350" value="@Model.Note" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TitleLabel">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <input id="Submit" type="submit" value="更新" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>
